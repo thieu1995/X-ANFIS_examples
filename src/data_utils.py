@@ -83,6 +83,30 @@ def get_wine(verbose=False):
     return preprocess_data(df.data, df.target, data_name="Wine", encode=True, verbose=verbose)
 
 
+def get_california_housing(verbose=False):
+    df = fetch_california_housing()
+    return preprocess_data(df.data, df.target, data_name="California", encode=False, verbose=verbose)
+
+
+def get_bike_sharing_demand(path, verbose=False):
+    ## Data pre-processing from here: https://www.kaggle.com/code/thieunv/bike-sharing-demand-eda-regression-90-acc
+    # https://www.kaggle.com/code/behradkarimi/check-some-regression-model-and-find-the-best-one
+    # bike_sharing = fetch_ucirepo(id=275)
+
+    df = pd.read_csv(path)
+    X = df.drop(['count', 'year_2012', 'season_spring', 'season_summer', 'season_winter', 'hour_en'], axis=1).values
+    y = df['count'].values
+
+    # Split the dataset into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=Config.TEST_SIZE,
+                                                        random_state=Config.SEED_SPLIT_DATA)
+    if verbose:
+        print(f"\nData: Bike Sharing Demand")
+        print(f"X shape: {X.shape}, y shape: {y.shape}")
+        # print(f"unique y_train: {np.unique(y_train)}, unique y_test: {np.unique(y_test)}")
+        print(f"X_train shape: {X_train.shape}, X_test shape: {X_test.shape}")
+    return X_train, X_test, y_train, y_test
+
 
 def get_bank_marketing(path, verbose=False):
     ## Data pre-processing from here: https://www.kaggle.com/code/thieunv/bank-marketing-eda-and-classification
@@ -197,26 +221,6 @@ def get_rice(path, verbose=False):
                                                         random_state=Config.SEED_SPLIT_DATA)
     if verbose:
         print(f"\nData: Rice")
-        print(f"X shape: {X.shape}, y shape: {y.shape}")
-        print(f"unique y_train: {np.unique(y_train)}, unique y_test: {np.unique(y_test)}")
-        print(f"X_train shape: {X_train.shape}, X_test shape: {X_test.shape}")
-    return X_train, X_test, y_train, y_test
-
-
-def get_bike_sharing_demand(path, verbose=False):
-    ## Data pre-processing from here: https://www.kaggle.com/code/thieunv/bike-sharing-demand-eda-regression-90-acc
-    # https://www.kaggle.com/code/behradkarimi/check-some-regression-model-and-find-the-best-one
-    # bike_sharing = fetch_ucirepo(id=275)
-
-    df = pd.read_csv(path)
-    X = df.drop(['count', 'year_2012', 'season_spring', 'season_summer', 'season_winter', 'hour_en'], axis=1).values
-    y = df['count'].values
-
-    # Split the dataset into training and testing sets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=Config.TEST_SIZE,
-                                                        random_state=Config.SEED_SPLIT_DATA)
-    if verbose:
-        print(f"\nData: Bike Sharing Demand")
         print(f"X shape: {X.shape}, y shape: {y.shape}")
         print(f"unique y_train: {np.unique(y_train)}, unique y_test: {np.unique(y_test)}")
         print(f"X_train shape: {X_train.shape}, X_test shape: {X_test.shape}")
