@@ -83,7 +83,7 @@ if __name__ == "__main__":
                               reg_lambda=None,
                               epochs=300, batch_size=128, optim="SGD", optim_params=None,
                               early_stopping=True, n_patience=50, epsilon=0.01, valid_rate=0.1,
-                              seed=seed, verbose=True)
+                              seed=seed, verbose=cf.VERBOSE)
         LIST_MODELS.append([md1, seed, "ANFIS", "no_loss"])
     # Add GD ANFIS
     for opt in cf.LIST_GD_MODELS:
@@ -93,7 +93,7 @@ if __name__ == "__main__":
                                     reg_lambda=None,
                                     epochs=300, batch_size=128, optim=opt["class"], optim_params=opt["paras"],
                                     early_stopping=True, n_patience=50, epsilon=0.01, valid_rate=0.1,
-                                    seed=seed, verbose=True)
+                                    seed=seed, verbose=cf.VERBOSE)
             LIST_MODELS.append([md2, seed, opt['name'], "no_loss"])
     # Add Bio ANFIS
     for opt in cf.LIST_BIO_MODELS:
@@ -102,7 +102,7 @@ if __name__ == "__main__":
                                      vanishing_strategy=cf.DATA01['vanishing_strategy'], act_output=None,
                                      reg_lambda=None,
                                      optim=opt["class"], optim_params=opt["paras"],
-                                     obj_name=cf.OBJ_CLS, seed=seed, verbose=True)
+                                     obj_name=cf.OBJ_CLS, seed=seed, verbose=cf.VERBOSE)
             LIST_MODELS.append([md3, seed, opt['name'], "has_loss"])
 
     # Run trials in parallel for all models and seeds
