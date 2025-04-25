@@ -1,3 +1,6 @@
+
+data/clean/*
+.idea/
 data/sd/
 drafts/
 # Byte-compiled / optimized / DLL files

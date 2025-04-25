@@ -18,7 +18,7 @@ class Config:
     FILE_RESULT_STATS = "df_result_statistics.csv"
     FIGURE_SIZE = (10, 4.8)
 
-    VERBOSE = False
+    VERBOSE = True
     SEED_SPLIT_DATA = 42
     TEST_SIZE = 0.2
     OBJ_CLS = "F1S"
@@ -57,57 +57,23 @@ class Config:
         "vanishing_strategy": "prod"
     }
 
-    # 8124 samples, 22 features, 2 classes
-    # (8124, 22) - after pre-processing
+    # 17376 samples, 9 features,
     DATA05 = {
-        "name": "mushroom",
-        "size_hidden": 45,
-        "center_finder": "kmeans"
+        "name": "bike",
+        "n_rules": 15,
+        "mf_class": "Triangular", # Gaussian, Sigmoid, Trapezoidal, Triangular, Sigmoid, Bell, PiShaped, SShaped, GBell, ZShaped, Linear
+        "vanishing_strategy": "prod"
     }
 
-    # 3810 samples, 7 features, 2 classes
-    # (3724, 7) - after pre-processing
+    # 20K samples, 8 features
     DATA06 = {
-        "name": "rice",
-        "size_hidden": 15,
-        "center_finder": "kmeans"
+        "name": "california",
+        "n_rules": 15,
+        "mf_class": "Triangular", # Gaussian, Sigmoid, Trapezoidal, Triangular, Sigmoid, Bell, PiShaped, SShaped, GBell, ZShaped, Linear
+        "vanishing_strategy": "prod"
     }
 
-    # 21263 samples, 81 features
-    # (21263, 81) - after pre-processing
-    DATA07 = {
-        "name": "superconductivity",
-        "size_hidden": 40,
-        "center_finder": "kmeans"
-    }
-
-    # 9568 samples, 4 features
-    # (9568, 4) - after pre-processing
-    DATA08 = {
-        "name": "ccpp",
-        "size_hidden": 9,
-        "center_finder": "kmeans"
-    }
-
-    ## Load data object
-    # 1030 samples, 8 features
-    # (1030, 8) - after pre-processing
-    DATA09 = {
-        "name": "concrete",
-        "size_hidden": 17,
-        "center_finder": "kmeans"
-    }
-
-    ## Load data object
-    # 9471 samples, 14 features
-    # (8191, 12) - after pre-processing
-    DATA10 = {
-        "name": "air_quality",
-        "size_hidden": 25,
-        "center_finder": "kmeans"
-    }
-
-    EPOCH = 300
+    EPOCH = 500
     POP_SIZE = 20
     # LIST_SEEDS = [7, 8, 11, 15, 20, 21, 22, 23, 24, 27, 28, 30, 32, 35, 37, 39, 40, 41, 42, 45]
     # LIST_METRICS = ["PS", "RS", "NPV", "F1S", "F2S", "SS", "CKS", "GMS", "AUC", "LS", "AS"]
@@ -116,7 +82,7 @@ class Config:
     LIST_METRIC_CLS = ["AS", "PS", "RS", "F1S", "SS", "NPV"]
     LIST_METRIC_REG =  ["MAE", "RMSE", "NNSE", "WI", "R", "KGE"]
     # LIST_MODEL_CC = ["SHADE-ANFIS", "L-SHADE-ANFIS", "IM-ARO-ANFIS", "QLE-SCA-ANFIS", "A-EO-ANFIS", "AIW-PSO-ANFIS"]
-    LIST_MODEL_CC = ["GBO-ANFIS", "ARO-ANFIS", "RIME-ANFIS", "QLE-SCA-ANFIS", "AAEO-ANFIS", "SMA-ANFIS"]     # Models used to draw convergence chart
+    LIST_MODEL_CC = ["GBO-ANFIS", "ARO-ANFIS", "RIME-ANFIS", "QLE-SCA-ANFIS", "AAEO-ANFIS", "WOA-ANFIS"]     # Models used to draw convergence chart
     # LIST_MODEL_CC = ["Adam-ANFIS", ]
     N_WORKERS = 10
 
@@ -137,7 +103,7 @@ class Config:
         {"name": "QLE-SCA-ANFIS", "class": "QleSCA", "paras": {"epoch": EPOCH, "pop_size": POP_SIZE}},
         {"name": "AAEO-ANFIS", "class": "AugmentedAEO", "paras": {"epoch": EPOCH, "pop_size": POP_SIZE}},
         {"name": "SMA-ANFIS", "class": "DevSMA", "paras": {"epoch": EPOCH, "pop_size": POP_SIZE}},
-        {"name": "AVOA-ANFIS", "class": "OriginalAVOA", "paras": {"epoch": EPOCH, "pop_size": POP_SIZE}},
+        # {"name": "AVOA-ANFIS", "class": "OriginalAVOA", "paras": {"epoch": EPOCH, "pop_size": POP_SIZE}},
         {"name": "AGTO-ANFIS", "class": "OriginalAGTO", "paras": {"epoch": EPOCH, "pop_size": POP_SIZE}},
         {"name": "WOA-ANFIS", "class": "OriginalWOA", "paras": {"epoch": EPOCH, "pop_size": POP_SIZE}},
 
@@ -165,5 +131,3 @@ class Config:
         # # {"name": "WMQI-MRFO-ANFIS", "class": "WMQIMRFO", "paras": {"epoch": EPOCH, "pop_size": POP_SIZE}},    # Warning divide by 0,
         # {"name": "WOA-FOA-ANFIS", "class": "WhaleFOA", "paras": {"epoch": EPOCH, "pop_size": POP_SIZE}},      # 6
     ]
-
-
