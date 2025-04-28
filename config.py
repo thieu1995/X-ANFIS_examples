@@ -18,7 +18,7 @@ class Config:
     FILE_RESULT_STATS = "df_result_statistics.csv"
     FIGURE_SIZE = (10, 4.8)
 
-    VERBOSE = True
+    VERBOSE = False
     SEED_SPLIT_DATA = 42
     TEST_SIZE = 0.2
     OBJ_CLS = "F1S"
