@@ -93,7 +93,7 @@ if __name__ == "__main__":
                                     epochs=300, batch_size=16, optim=opt["class"], optim_params=opt["paras"],
                                     early_stopping=True, n_patience=50, epsilon=0.01, valid_rate=0.1,
                                     seed=seed, verbose=cf.VERBOSE)
-            LIST_MODELS.append([md2, seed, opt['name'], "no_loss"])
+            LIST_MODELS.append([md2, seed, opt['name'], "has_loss"])
     # Add Bio ANFIS
     for opt in cf.LIST_BIO_MODELS:
         for seed in cf.LIST_SEEDS:

@@ -73,7 +73,7 @@ class Config:
         "vanishing_strategy": "prod"
     }
 
-    EPOCH = 500
+    EPOCH = 250
     POP_SIZE = 20
     # LIST_SEEDS = [7, 8, 11, 15, 20, 21, 22, 23, 24, 27, 28, 30, 32, 35, 37, 39, 40, 41, 42, 45]
     # LIST_METRICS = ["PS", "RS", "NPV", "F1S", "F2S", "SS", "CKS", "GMS", "AUC", "LS", "AS"]
@@ -103,7 +103,7 @@ class Config:
         {"name": "QLE-SCA-ANFIS", "class": "QleSCA", "paras": {"epoch": EPOCH, "pop_size": POP_SIZE}},
         {"name": "AAEO-ANFIS", "class": "AugmentedAEO", "paras": {"epoch": EPOCH, "pop_size": POP_SIZE}},
         {"name": "SMA-ANFIS", "class": "DevSMA", "paras": {"epoch": EPOCH, "pop_size": POP_SIZE}},
-        # {"name": "AVOA-ANFIS", "class": "OriginalAVOA", "paras": {"epoch": EPOCH, "pop_size": POP_SIZE}},
+        {"name": "AVOA-ANFIS", "class": "OriginalAVOA", "paras": {"epoch": EPOCH, "pop_size": POP_SIZE}},
         {"name": "AGTO-ANFIS", "class": "OriginalAGTO", "paras": {"epoch": EPOCH, "pop_size": POP_SIZE}},
         {"name": "WOA-ANFIS", "class": "OriginalWOA", "paras": {"epoch": EPOCH, "pop_size": POP_SIZE}},
 
