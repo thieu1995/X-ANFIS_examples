@@ -50,6 +50,7 @@ def run_trial(md_item, data, cf):
 
 if __name__ == "__main__":
     ## Load data object
+    # 17376 samples, 9 features => multi classification
     Path(f"{cf.PATH_SAVE}/{cf.DATA05['name']}").mkdir(parents=True, exist_ok=True)
     X_train, X_test, y_train, y_test = get_bike_sharing_demand(f"{cf.PATH_READ}/bike_sharing_demand.csv", verbose=True)
     ## Scaling dataset

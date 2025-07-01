@@ -1,5 +1,5 @@
 
-data/clean/*
+data/clean/
 .idea/
 data/sd/
 drafts/

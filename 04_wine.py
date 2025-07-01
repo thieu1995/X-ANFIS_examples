@@ -39,17 +39,18 @@ def run_trial(md_item, data, cf):
     res = get_metrics(problem="classification", y_true=y_test, y_pred=y_pred, list_metrics=cf.LIST_METRIC_CLS)
     res_predict = {"model_name": model_name, "seed": seed, **res}
 
-    dt_name = cf.DATA04['name'].capitalize()
-
-    # Draw the figure
-    draw_confusion_matrix(y_true=y_test, y_pred=y_pred,
-                          figsize=(8, 6), title=f"Confusion matrix of {model_name} on {dt_name} dataset",
-                          pathsave=f"{cf.PATH_SAVE}/{cf.DATA04['name']}/cm/cm_{model_name}_{seed}.png", verbose=False)
+    # dt_name = cf.DATA04['name'].capitalize()
+    #
+    # # Draw the figure
+    # draw_confusion_matrix(y_true=y_test, y_pred=y_pred,
+    #                       figsize=(8, 6), title=f"Confusion matrix of {model_name} on {dt_name} dataset",
+    #                       pathsave=f"{cf.PATH_SAVE}/{cf.DATA04['name']}/cm/cm_{model_name}_{seed}.png", verbose=False)
     return res_epoch_loss, res_predict
 
 
 if __name__ == "__main__":
     ## Load data object
+    # 178 samples, 13 features, 3 classes => multi classification
     Path(f"{cf.PATH_SAVE}/{cf.DATA04['name']}").mkdir(parents=True, exist_ok=True)
     X_train, X_test, y_train, y_test = get_wine(verbose=True)
     ## Scaling dataset

@@ -50,7 +50,7 @@ def run_trial(md_item, data, cf):
 
 if __name__ == "__main__":
     ## Load data object
-    # 788 samples, 2 features, 7 classes
+    # 20640 samples, 8 features
     Path(f"{cf.PATH_SAVE}/{cf.DATA06['name']}").mkdir(parents=True, exist_ok=True)
     X_train, X_test, y_train, y_test = get_california_housing(verbose=True)
     ## Scaling dataset
