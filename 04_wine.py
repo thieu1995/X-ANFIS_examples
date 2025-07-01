@@ -52,7 +52,7 @@ if __name__ == "__main__":
     ## Load data object
     # 178 samples, 13 features, 3 classes => multi classification
     Path(f"{cf.PATH_SAVE}/{cf.DATA04['name']}").mkdir(parents=True, exist_ok=True)
-    X_train, X_test, y_train, y_test = get_wine(verbose=True)
+    X_train, X_test, y_train, y_test = get_wine(path=f"{cf.PATH_READ}/{cf.DATA04['name']}.csv", verbose=False)
     ## Scaling dataset
     dt = DataTransformer(scaling_methods=("minmax",))
     X_train_scaled = dt.fit_transform(X_train)

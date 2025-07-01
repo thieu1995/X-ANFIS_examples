@@ -14,7 +14,7 @@ from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from xanfis import DataTransformer, AnfisClassifier, GdAnfisClassifier, BioAnfisClassifier
 from config import Config as cf
-from src.data_utils import get_magic
+from src.data_utils import get_rice
 from src.helper import get_metrics
 from src.visualizer import draw_confusion_matrix, draw_boxplot, draw_convergence_chart
 
@@ -50,9 +50,9 @@ def run_trial(md_item, data, cf):
 
 if __name__ == "__main__":
     ## Load data object
-    # 13376 samples, 10 features, 2 classes => binary classification
+    # 3724 samples, 7 features, 2 classes => binary classification
     Path(f"{cf.PATH_SAVE}/{cf.DATA02['name']}").mkdir(parents=True, exist_ok=True)
-    X_train, X_test, y_train, y_test = get_magic(verbose=True)
+    X_train, X_test, y_train, y_test = get_rice(path=f"{cf.PATH_READ}/{cf.DATA02['name']}.csv", verbose=False)
     ## Scaling dataset
     dt = DataTransformer(scaling_methods=("minmax",))
     X_train_scaled = dt.fit_transform(X_train)

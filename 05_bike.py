@@ -14,7 +14,7 @@ from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from xanfis import DataTransformer, AnfisRegressor, GdAnfisRegressor, BioAnfisRegressor
 from config import Config as cf
-from src.data_utils import get_bike_sharing_demand
+from src.data_utils import get_bike
 from src.helper import get_metrics
 from src.visualizer import draw_boxplot, draw_convergence_chart
 
@@ -50,9 +50,9 @@ def run_trial(md_item, data, cf):
 
 if __name__ == "__main__":
     ## Load data object
-    # 17376 samples, 9 features => multi classification
+    # 8000 samples, 14 features
     Path(f"{cf.PATH_SAVE}/{cf.DATA05['name']}").mkdir(parents=True, exist_ok=True)
-    X_train, X_test, y_train, y_test = get_bike_sharing_demand(f"{cf.PATH_READ}/bike_sharing_demand.csv", verbose=True)
+    X_train, X_test, y_train, y_test = get_bike(path=f"{cf.PATH_READ}/bike_sharing_demand.csv", verbose=False)
     ## Scaling dataset
     dt_x = DataTransformer(scaling_methods=("minmax",))
     X_train_scaled = dt_x.fit_transform(X_train)
@@ -68,12 +68,12 @@ if __name__ == "__main__":
 
     ## Add machine learning models
     for seed in cf.LIST_SEEDS:
-        svc = SVR(kernel="rbf", C=0.75)
-        knn = KNeighborsRegressor(n_neighbors=7, algorithm="auto", n_jobs=-1)
-        dtc = DecisionTreeRegressor(max_depth=7, random_state=seed)
-        rfc = RandomForestRegressor(n_estimators=80, max_depth=7, max_features=5, random_state=seed)
-        gbc = GradientBoostingRegressor(n_estimators=80, learning_rate=0.5, max_depth=7, random_state=seed)
-        mlp = MLPRegressor(alpha=0.01, max_iter=500, hidden_layer_sizes=(20,), activation="relu", random_state=seed)
+        svc = SVR(kernel="rbf", C=0.5)
+        knn = KNeighborsRegressor(n_neighbors=6, algorithm="auto", n_jobs=-1)
+        dtc = DecisionTreeRegressor(max_depth=6, random_state=seed)
+        rfc = RandomForestRegressor(n_estimators=70, max_depth=6, max_features=5, random_state=seed)
+        gbc = GradientBoostingRegressor(n_estimators=70, learning_rate=0.5, max_depth=6, random_state=seed)
+        mlp = MLPRegressor(alpha=0.01, max_iter=500, hidden_layer_sizes=(30,), activation="relu", random_state=seed)
         LIST_MODELS.append([svc, seed, "SVM", "no_loss"])
         LIST_MODELS.append([knn, seed, "KNN", "no_loss"])
         LIST_MODELS.append([dtc, seed, "DT", "no_loss"])
@@ -82,20 +82,20 @@ if __name__ == "__main__":
         LIST_MODELS.append([mlp, seed, "MLP", "no_loss"])
     ## Add traditional ANFIS
     for seed in cf.LIST_SEEDS:
-        md1 = AnfisRegressor(num_rules=15, mf_class="Gaussian",
+        md1 = AnfisRegressor(num_rules=20, mf_class="Gaussian",
                              vanishing_strategy=cf.DATA05['vanishing_strategy'],
                              act_output=None, reg_lambda=None,
-                             epochs=500, batch_size=256, optim="SGD", optim_params=None,
+                             epochs=500, batch_size=128, optim="SGD", optim_params=None,
                              early_stopping=True, n_patience=50, epsilon=0.1, valid_rate=0.1,
                              seed=seed, verbose=cf.VERBOSE)
         LIST_MODELS.append([md1, seed, "ANFIS", "no_loss"])
     ## Add GD ANFIS
     for opt in cf.LIST_GD_MODELS:
         for seed in cf.LIST_SEEDS:
-            md2 = GdAnfisRegressor(num_rules=20, mf_class="Gaussian",
+            md2 = GdAnfisRegressor(num_rules=25, mf_class="Gaussian",
                                    vanishing_strategy=cf.DATA05['vanishing_strategy'],
                                    act_output=None, reg_lambda=None,
-                                   epochs=500, batch_size=256, optim=opt["class"], optim_params=opt["paras"],
+                                   epochs=500, batch_size=128, optim=opt["class"], optim_params=opt["paras"],
                                    early_stopping=True, n_patience=50, epsilon=0.01, valid_rate=0.1,
                                    seed=seed, verbose=cf.VERBOSE)
             LIST_MODELS.append([md2, seed, opt['name'], "has_loss"])

@@ -32,10 +32,10 @@ class Config:
         "vanishing_strategy": "prod"
     }
 
-    # 13376 samples, 10 features, 2 classes
+    # 3724 samples, 7 features, 2 classes
     DATA02 = {
-        "name": "magic",
-        "n_rules": 12,
+        "name": "rice",
+        "n_rules": 10,
         "mf_class": "Triangular", # Gaussian, Sigmoid, Trapezoidal, Triangular, Sigmoid, Bell, PiShaped, SShaped, GBell, ZShaped, Linear
         "vanishing_strategy": "prod"
     }
@@ -48,7 +48,6 @@ class Config:
         "vanishing_strategy": "prod"
     }
 
-    # 1500 samples, 2 features, 3 classes - blobs
     # 178 samples, 13 features, 3 classes - wine  Triangular: 0.876
     DATA04 = {
         "name": "wine",
@@ -57,7 +56,7 @@ class Config:
         "vanishing_strategy": "prod"
     }
 
-    # 17376 samples, 9 features,
+    # 8000 samples, 14 features
     DATA05 = {
         "name": "bike",
         "n_rules": 15,
@@ -65,9 +64,9 @@ class Config:
         "vanishing_strategy": "prod"
     }
 
-    # 20K samples, 8 features
+    # 1030 samples, 8 features
     DATA06 = {
-        "name": "california",
+        "name": "concrete",
         "n_rules": 15,
         "mf_class": "Triangular", # Gaussian, Sigmoid, Trapezoidal, Triangular, Sigmoid, Bell, PiShaped, SShaped, GBell, ZShaped, Linear
         "vanishing_strategy": "prod"
