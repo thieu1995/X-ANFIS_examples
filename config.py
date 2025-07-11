@@ -29,7 +29,7 @@ class Config:
         "name": "phoneme",
         "n_rules": 12,
         "mf_class": "Trapezoidal", # Gaussian, Sigmoid, Trapezoidal, Triangular, Sigmoid, Bell, PiShaped, SShaped, GBell, ZShaped, Linear
-        "vanishing_strategy": "prod"
+        "vanishing_strategy": "mean"
     }
 
     # 3724 samples, 7 features, 2 classes
@@ -37,7 +37,7 @@ class Config:
         "name": "rice",
         "n_rules": 10,
         "mf_class": "Triangular", # Gaussian, Sigmoid, Trapezoidal, Triangular, Sigmoid, Bell, PiShaped, SShaped, GBell, ZShaped, Linear
-        "vanishing_strategy": "prod"
+        "vanishing_strategy": "mean"
     }
 
     # 788 samples, 3 features, 7 classes
@@ -45,7 +45,7 @@ class Config:
         "name": "aggregation",
         "n_rules": 8,
         "mf_class": "Gaussian",
-        "vanishing_strategy": "prod"
+        "vanishing_strategy": "mean"
     }
 
     # 178 samples, 13 features, 3 classes - wine  Triangular: 0.876
@@ -53,7 +53,7 @@ class Config:
         "name": "wine",
         "n_rules": 10,
         "mf_class": "Triangular", # Gaussian, Sigmoid, Trapezoidal, Triangular, Sigmoid, Bell, PiShaped, SShaped, GBell, ZShaped, Linear
-        "vanishing_strategy": "prod"
+        "vanishing_strategy": "mean"
     }
 
     # 8000 samples, 14 features
@@ -61,7 +61,7 @@ class Config:
         "name": "bike",
         "n_rules": 15,
         "mf_class": "Triangular", # Gaussian, Sigmoid, Trapezoidal, Triangular, Sigmoid, Bell, PiShaped, SShaped, GBell, ZShaped, Linear
-        "vanishing_strategy": "prod"
+        "vanishing_strategy": "mean"
     }
 
     # 1030 samples, 8 features
@@ -69,7 +69,7 @@ class Config:
         "name": "concrete",
         "n_rules": 15,
         "mf_class": "Triangular", # Gaussian, Sigmoid, Trapezoidal, Triangular, Sigmoid, Bell, PiShaped, SShaped, GBell, ZShaped, Linear
-        "vanishing_strategy": "prod"
+        "vanishing_strategy": "mean"
     }
 
     EPOCH = 250
